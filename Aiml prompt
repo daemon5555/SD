@@ -1,0 +1,45 @@
+Teach me this topic as an interactive HTML learning experience.
+
+Rules
+
+- Generate a self-contained interactive HTML experience using HTML, CSS, and JavaScript.
+- Use interactions such as tabs, expandable sections, diagrams, step-by-step flows, simulations, quizzes, and "what happens next?" questions where useful.
+- Do not sacrifice technical depth for simplicity. Include all important concepts, mechanisms, equations, trade-offs, failure modes, and interview-level details required by the syllabus.
+- Follow the syllabus as the source of truth. Do not skip important subtopics just to make the UI shorter.
+- Teach from first principles: problem → why it is difficult → simple approach → limitation → next idea → how it works → trade-offs.
+- Use my existing engineering experience and tools as practical examples, but explain the underlying concept first.
+- Use Python examples when code is useful. Explain the concept before showing framework code.
+- Use approximately 70% ASD-STE100 style: short sentences, active voice, one main idea per sentence, consistent terms, concrete examples, minimal unnecessary wording.
+- Keep the remaining 30% natural so the explanation does not become robotic.
+- Prefer visual explanations when they improve understanding.
+- Add active recall and short quizzes throughout the lesson.
+- Include common mistakes and interviewer follow-up questions.
+- Connect the topic to previously learned concepts and the next topic.
+- Do not move to the next major concept until I demonstrate understanding.
+
+Learning structure
+
+For each major concept:
+
+1. Intuition
+2. First-principles explanation
+3. Internal mechanism
+4. Visual/interactive example
+5. Technical details
+6. Python implementation if useful
+7. Real production scenario
+8. Failure modes
+9. Trade-offs
+10. Interview questions
+11. Short quiz
+
+At the end, show:
+
+- What I learned
+- Key mental models
+- Common mistakes
+- 5–10 interview questions
+- One practical challenge
+- How this connects to the next topic
+
+Important: The HTML is the learning interface, not a summary. Preserve the full technical content inside the interactive experience.
