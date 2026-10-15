@@ -1,0 +1,816 @@
+AI ENGINEER INTERVIEW MASTER ROADMAP
+
+Goal:
+Build first-principles understanding of AI engineering.
+Focus on concepts needed by an AI Engineer, not an ML researcher.
+Learn every concept through:
+
+1. First principles
+2. Intuition
+3. Internal mechanism
+4. Practical implementation
+5. Real-world scenarios
+6. Failure modes
+7. Trade-offs
+8. Interview questions
+
+---
+
+PHASE 1: MINIMUM ML FOUNDATION
+
+1. AI, ML and Deep Learning
+
+- Artificial Intelligence
+- Machine Learning
+- Deep Learning
+- Generative AI
+- Foundation Models
+- Discriminative vs Generative Models
+- Training vs Inference
+
+2. How Machine Learning Works
+
+- Dataset
+- Features
+- Labels
+- Parameters
+- Model
+- Prediction
+- Loss
+- Optimization
+- Training
+- Inference
+
+Core mental model:
+Data → Model → Prediction → Loss → Parameter Update → Better Model
+
+3. Learning Paradigms
+
+- Supervised Learning
+- Unsupervised Learning
+- Self-Supervised Learning
+- Reinforcement Learning
+- When to use each
+
+4. Generalization
+
+- Training error
+- Test error
+- Generalization
+- Overfitting
+- Underfitting
+- Bias
+- Variance
+- Regularization
+
+5. Evaluation
+
+- Confusion Matrix
+- Accuracy
+- Precision
+- Recall
+- F1
+- Choosing metrics based on business requirements
+
+6. Optimization
+
+- Parameters
+- Loss Functions
+- Gradients
+- Gradient Descent
+- Learning Rate
+- Batch
+- Epoch
+- Optimizers
+
+7. Neural Networks
+
+- Neuron
+- Weights
+- Bias
+- Activation Functions
+- Layers
+- Forward Pass
+- Backpropagation
+- Gradient Descent
+
+8. Important Loss Functions
+
+- MSE
+- Cross Entropy
+- Classification Loss
+- Language Model Loss
+
+9. Reinforcement Learning
+
+- Agent
+- Environment
+- State
+- Action
+- Reward
+- Policy
+- Value
+- Exploration vs Exploitation
+
+10. RLHF and Alignment
+
+- Why RLHF exists
+- Supervised Fine-Tuning
+- Human Preference Data
+- Reward Models
+- PPO
+- RLHF
+- DPO
+- Preference Optimization
+- Alignment
+
+---
+
+PHASE 2: NLP FOUNDATIONS
+
+11. Representing Language
+
+- Text
+- Vocabulary
+- Tokenization
+- Subword Tokenization
+- Token IDs
+- Vector Representations
+
+12. Embeddings
+
+- What embeddings represent
+- Semantic space
+- Vector similarity
+- Cosine Similarity
+- Dot Product
+- Euclidean Distance
+- Embedding Dimensions
+- Semantic Search
+
+---
+
+PHASE 3: TRANSFORMERS
+
+13. Evolution of NLP
+
+- Bag of Words
+- Word Embeddings
+- RNN
+- LSTM
+- Limitations of RNNs
+- Why Transformers
+
+14. Attention
+
+- Query
+- Key
+- Value
+- Attention Scores
+- Softmax
+- Weighted Values
+- Self-Attention
+- Cross-Attention
+- Multi-Head Attention
+
+15. Transformer Architecture
+
+- Token Embeddings
+- Positional Information
+- Self-Attention
+- Feed-Forward Network
+- Residual Connections
+- Layer Normalization
+- Encoder
+- Decoder
+- Encoder-Decoder
+- Causal Attention
+- Masked Attention
+- Decoder-Only Architecture
+
+---
+
+PHASE 4: LLM FUNDAMENTALS
+
+16. LLM Training
+
+- Training Corpus
+- Tokenization
+- Next Token Prediction
+- Language Model Loss
+- Backpropagation
+- Parameter Updates
+- Pretraining
+
+17. Next Token Prediction
+
+- Logits
+- Probability Distribution
+- Vocabulary
+- Sampling
+- Why Next-Token Prediction Produces General Capabilities
+
+18. Decoding
+
+- Greedy Decoding
+- Temperature
+- Top-K
+- Top-P
+- Deterministic vs Stochastic Generation
+
+19. Context
+
+- Context
+- Context Window
+- Input Tokens
+- Output Tokens
+- Context Limits
+- Context Cost
+- Context Latency
+- Context Quality
+
+20. Model Training Stages
+
+- Pretraining
+- Base Models
+- Instruction Tuning
+- Supervised Fine-Tuning
+- RLHF
+- DPO
+- Alignment
+
+---
+
+PHASE 5: PROMPT ENGINEERING AND CONTEXT ENGINEERING
+
+21. Prompt Fundamentals
+
+- System Prompts
+- User Prompts
+- Instructions
+- Zero-Shot
+- Few-Shot
+- Role Prompting
+- Delimiters
+- Constraints
+- Examples
+
+22. Structured Outputs
+
+- JSON Output
+- Schemas
+- Validation
+- Structured Generation
+- Handling Invalid Outputs
+
+23. Advanced Prompting
+
+- Decomposition
+- Few-Shot Prompting
+- Self-Consistency
+- Critique and Revision
+- Reasoning Strategies
+- Dynamic Prompts
+- Prompt Templates
+
+24. Context Engineering
+
+- System Instructions
+- User Request
+- Conversation History
+- Retrieved Context
+- Tool Results
+- Memory
+- Task State
+- Context Selection
+- Context Compression
+
+25. Prompt Security
+
+- Prompt Injection
+- Instruction Conflicts
+- Jailbreaks
+- Context Poisoning
+- Indirect Prompt Injection
+
+---
+
+PHASE 6: RAG FUNDAMENTALS
+
+26. Why RAG Exists
+
+- LLM Knowledge Limitations
+- Private Knowledge
+- Fresh Knowledge
+- External Knowledge
+- Citations
+- RAG vs Model Parameters
+
+27. RAG Architecture
+
+- Document Ingestion
+- Parsing
+- Cleaning
+- Chunking
+- Embedding
+- Indexing
+- Query Processing
+- Retrieval
+- Reranking
+- Context Construction
+- Generation
+
+28. Document Ingestion
+
+- PDF Parsing
+- HTML
+- Markdown
+- Word Documents
+- Tables
+- OCR
+- Images
+- Metadata
+- Versioning
+
+29. Chunking
+
+- Fixed-Size Chunking
+- Token Chunking
+- Sentence Chunking
+- Paragraph Chunking
+- Recursive Chunking
+- Semantic Chunking
+- Structure-Aware Chunking
+- Parent-Child Chunking
+- Sliding Window
+- Contextual Chunking
+- Late Chunking
+- Choosing Chunk Size
+- Chunk Overlap
+- Chunk Metadata
+
+30. Retrieval
+
+- Sparse Retrieval
+- BM25
+- Keyword Search
+- Dense Retrieval
+- Vector Search
+- Hybrid Search
+- Metadata Filtering
+- Query Rewriting
+- Multi-Query Retrieval
+- HyDE
+- Parent Document Retrieval
+- Multi-Vector Retrieval
+
+31. Reranking
+
+- Why Reranking
+- Bi-Encoder
+- Cross-Encoder
+- Retrieval Top-K
+- Reranking Top-K
+- Latency vs Quality
+
+---
+
+PHASE 7: ADVANCED RAG
+
+32. RAG Failure Modes
+
+- Parsing Failure
+- Chunking Failure
+- Retrieval Failure
+- Irrelevant Retrieval
+- Missing Information
+- Too Much Context
+- Conflicting Documents
+- Duplicate Documents
+- Stale Documents
+- Hallucination
+- Multi-Hop Questions
+- Table Retrieval Problems
+- Image Retrieval Problems
+- Prompt Injection Through Documents
+
+33. Advanced RAG Patterns
+
+- Query Expansion
+- Query Decomposition
+- Multi-Query RAG
+- HyDE
+- Parent-Child Retrieval
+- Contextual Retrieval
+- Corrective RAG
+- Self-RAG
+- Graph RAG
+- Agentic RAG
+- Multi-Hop RAG
+
+34. RAG vs Other Approaches
+
+- Prompting vs RAG
+- RAG vs Fine-Tuning
+- RAG vs Long Context
+- Vector Search vs Keyword Search
+- Hybrid Search
+- Agentic RAG vs Traditional RAG
+
+---
+
+PHASE 8: AI EVALUATION
+
+35. Retrieval Evaluation
+
+- Recall@K
+- Precision@K
+- MRR
+- nDCG
+- Retrieval Recall
+- Retrieval Precision
+
+36. Generation Evaluation
+
+- Correctness
+- Relevance
+- Faithfulness
+- Groundedness
+- Completeness
+
+37. End-to-End Evaluation
+
+- Golden Dataset
+- Human Evaluation
+- LLM-as-a-Judge
+- Regression Testing
+- Evaluation Pipelines
+- Offline Evaluation
+- Online Evaluation
+- Production Feedback
+
+38. Debugging AI Systems
+
+- Retrieval Failure vs Generation Failure
+- Evaluation Traces
+- Error Classification
+- Regression Detection
+- Experimentation
+
+---
+
+PHASE 9: FINE-TUNING
+
+39. Fine-Tuning Fundamentals
+
+- When Fine-Tuning Is Needed
+- Supervised Fine-Tuning
+- Instruction Tuning
+- Fine-Tuning Dataset
+- Training Data Quality
+- Evaluation Dataset
+- Catastrophic Forgetting
+
+40. Parameter-Efficient Fine-Tuning
+
+- LoRA
+- QLoRA
+- Adapters
+- When to Use PEFT
+
+41. Prompting vs RAG vs Fine-Tuning
+
+- Knowledge Problems
+- Behavior Problems
+- Format Problems
+- Freshness
+- Cost
+- Control
+- Maintenance
+
+---
+
+PHASE 10: TOOL CALLING
+
+42. Function Calling
+
+- Tool Definitions
+- Tool Schemas
+- Tool Selection
+- Tool Arguments
+- Validation
+- Tool Execution
+- Tool Results
+
+43. Tool Engineering
+
+- Retries
+- Timeouts
+- Idempotency
+- Authorization
+- Error Handling
+- Tool Result Validation
+- Safe Tool Design
+
+---
+
+PHASE 11: AI AGENTS
+
+44. Agent Fundamentals
+
+- What Is an Agent
+- Goal
+- State
+- Observation
+- Decision
+- Action
+- Tool Use
+- Agent Loop
+- Termination
+
+45. Agent Patterns
+
+- ReAct
+- Router
+- Planner
+- Supervisor
+- Worker
+- Reflection
+- Retry
+- Human-in-the-Loop
+- Subagents
+- Multi-Agent Systems
+
+46. Agent Failure Modes
+
+- Runaway Loops
+- Wrong Tool Selection
+- Invalid Arguments
+- Tool Failures
+- Hallucinated Actions
+- Context Overflow
+- Repeated Actions
+- Cost Explosion
+- Latency Explosion
+- Unsafe Actions
+
+47. When NOT to Use Agents
+
+- Deterministic Workflows
+- Fixed Pipelines
+- Cost Considerations
+- Latency Considerations
+- Reliability Considerations
+
+---
+
+PHASE 12: LANGGRAPH
+
+48. LangGraph Fundamentals
+
+- State
+- Nodes
+- Edges
+- Conditional Edges
+- Reducers
+- Graph Execution
+- Loops
+
+49. LangGraph Production Features
+
+- Checkpointing
+- Persistence
+- Durable Execution
+- Interrupts
+- Human-in-the-Loop
+- Retries
+- Subgraphs
+- Streaming
+- State Management
+
+50. LangGraph Projects
+
+- RAG Workflow
+- Customer Support Agent
+- SQL Agent
+- Research Agent
+- Human Approval Workflow
+- Multi-Agent Workflow
+
+---
+
+PHASE 13: MEMORY
+
+51. AI Memory
+
+- Conversation History
+- Short-Term State
+- Long-Term Memory
+- Semantic Memory
+- Procedural Memory
+- Checkpoints
+- Persistent Memory
+- Summarization
+- Context Compression
+- Memory Retrieval
+
+---
+
+PHASE 14: MCP
+
+52. Model Context Protocol
+
+- Why MCP
+- MCP Client
+- MCP Server
+- Tools
+- Resources
+- Prompts
+- Authorization
+- Security
+- MCP vs Function Calling
+
+---
+
+PHASE 15: PRODUCTION AI ENGINEERING
+
+53. Reliability
+
+- Retries
+- Timeouts
+- Fallbacks
+- Circuit Breakers
+- Rate Limiting
+- Idempotency
+- Graceful Degradation
+
+54. Latency
+
+- Network Latency
+- LLM Latency
+- Retrieval Latency
+- Reranking Latency
+- Tool Latency
+- Streaming
+- Parallel Calls
+- Caching
+- Model Selection
+- Batching
+
+55. Cost
+
+- Input Tokens
+- Output Tokens
+- Embedding Costs
+- Reranking Costs
+- Tool Costs
+- Prompt Caching
+- Response Caching
+- Model Routing
+- Context Reduction
+- Smaller Models
+- Batching
+
+---
+
+PHASE 16: AI SECURITY
+
+56. LLM Security
+
+- Prompt Injection
+- Indirect Prompt Injection
+- Jailbreaks
+- Data Exfiltration
+- Sensitive Information Disclosure
+- RAG Poisoning
+- Malicious Documents
+
+57. Agent Security
+
+- Least Privilege
+- Tool Authorization
+- Input Validation
+- Output Validation
+- Sandboxing
+- Human Approval
+- Irreversible Actions
+- Secrets Protection
+
+---
+
+PHASE 17: AI OBSERVABILITY
+
+58. AI Tracing
+
+- Requests
+- Prompts
+- Retrieval
+- Retrieved Documents
+- LLM Calls
+- Tool Calls
+- Final Responses
+
+59. AI Metrics
+
+- Latency
+- Token Usage
+- Cost
+- Error Rate
+- Retrieval Quality
+- Generation Quality
+- Evaluation Scores
+- User Feedback
+
+---
+
+PHASE 18: AI SYSTEM DESIGN
+
+60. System Design Fundamentals
+
+- Requirements
+- Architecture
+- Data Flow
+- Model Selection
+- Prompting
+- Retrieval
+- Tools
+- Memory
+- Evaluation
+- Security
+- Cost
+- Latency
+- Failure Handling
+- Scaling
+
+61. Systems to Design
+
+- Enterprise RAG
+- Customer Support Copilot
+- AI Research Agent
+- SQL Agent
+- Coding Assistant
+- Multi-Agent System
+- AI Email Assistant
+- Human-in-the-Loop Agent
+- Large-Scale Document Search
+- Production LLM API
+
+---
+
+PHASE 19: INTERVIEW PREPARATION
+
+For every major topic:
+
+1. Explain the concept from first principles.
+2. Explain the intuition.
+3. Explain the internal mechanism.
+4. Implement a small version in Python.
+5. Implement it using relevant frameworks.
+6. Discuss real production scenarios.
+7. Discuss failure modes.
+8. Discuss trade-offs.
+9. Answer interview questions.
+10. Solve a system-design scenario.
+
+Interview depth levels:
+
+Level 1:
+Definition
+
+Level 2:
+Mechanism
+
+Level 3:
+Engineering trade-offs
+
+Level 4:
+Failure modes
+
+Level 5:
+Production architecture
+
+Level 6:
+Interviewer follow-up / challenge
+
+Core permanent mental models:
+
+ML:
+Data → Model → Prediction → Loss → Optimization → Generalization
+
+Neural Networks:
+Input → Representation → Transformation → Prediction → Loss → Gradient → Update
+
+LLM:
+Context → Tokens → Transformer → Probability Distribution → Next Token
+
+Embeddings:
+Meaning → Vector → Distance → Similarity
+
+RAG:
+Question → Retrieve Knowledge → Add Context → Generate Answer
+
+Agent:
+Goal → Decide → Act → Observe → Repeat
+
+Production AI:
+Quality + Reliability + Latency + Cost + Security
