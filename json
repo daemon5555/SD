@@ -1,0 +1,170 @@
+DAY 1 - JSON + PYTHON PRACTICAL
+
+OBJECTIVE
+
+Use one deep JSON task to learn the largest possible number of practical Python patterns.
+
+Do not start by coding.
+
+STEP 1 - INSPECT
+
+Given a JSON file containing:
+- customers
+- accounts
+- transactions
+- transaction status
+- timestamps
+- amounts
+- optional metadata
+
+First determine:
+- top-level structure
+- record types
+- IDs
+- relationships
+- optional fields
+- possible invalid values
+
+STEP 2 - TASK
+
+Build a Python function:
+
+analyze_transactions(data)
+
+Requirements:
+
+1. Ignore malformed transaction records.
+2. Ignore transactions with missing required IDs.
+3. Ignore failed transactions.
+4. Convert valid amounts to numbers.
+5. Calculate successful transaction count per customer.
+6. Calculate successful transaction total per customer.
+7. Find the top 5 customers by total amount.
+8. Find customers with zero successful transactions.
+9. Detect duplicate transaction IDs.
+10. Return a clean JSON-compatible result.
+
+Add one extra requirement yourself after inspecting the data.
+
+WHY THIS TASK IS HIGH VALUE
+
+It forces you to practice:
+
+JSON navigation
+dict/list handling
+.get()
+validation
+type conversion
+sets
+lookup dictionaries
+grouping
+aggregation
+sorting
+deduplication
+joining related records
+nested data
+output transformation
+edge-case handling
+
+CORE PATTERNS TO LEARN
+
+PATTERN 1 - LOOKUP DICTIONARY
+
+When you repeatedly need:
+ID -> record
+
+Build:
+lookup[id] = record
+
+This avoids repeatedly scanning a list.
+
+PATTERN 2 - GROUPING
+
+When the requirement says:
+"for each customer"
+"by category"
+"per service"
+
+Think:
+dictionary keyed by the grouping field.
+
+PATTERN 3 - AGGREGATION
+
+When the requirement says:
+total, count, average, min, max
+
+Think:
+group + accumulator.
+
+PATTERN 4 - DEDUPLICATION
+
+When the requirement says:
+unique IDs
+duplicate records
+only once
+
+Think:
+set.
+
+PATTERN 5 - TOP N
+
+When the requirement says:
+top 5
+highest 10
+best N
+
+Think:
+sorted(..., key=..., reverse=True)[:N]
+
+If N is large or input is huge, consider heapq.
+
+PATTERN 6 - JOIN
+
+When two lists share an ID:
+
+customers
+transactions
+
+Build a dictionary for one side.
+
+Do not use nested loops unless the data is tiny and simplicity is more important.
+
+EDGE CASES
+
+Test:
+- empty input
+- missing key
+- null value
+- amount = 0
+- invalid amount
+- duplicate ID
+- unknown customer
+- no successful transactions
+- all transactions failed
+- negative amount if relevant
+
+FINAL STEP
+
+Explain:
+- Why dictionaries?
+- Why sets?
+- Why sorting?
+- Time complexity
+- Space complexity
+- What changes for millions of records?
+
+SECOND MINI CHALLENGE
+
+After completing the main task, change the requirement:
+
+"Now return the top 3 customers separately for each currency."
+
+Do not look at your old solution first.
+
+This tests whether you can adapt dynamically.
+
+INTERVIEW SKILL
+
+Do not immediately write code.
+
+Say your approach in 30-60 seconds first.
