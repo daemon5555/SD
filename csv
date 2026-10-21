@@ -1,0 +1,163 @@
+DAY 2 - CSV + TEXT/LOG PROCESSING
+
+PART A - CSV DEEP TASK
+
+OBJECTIVE
+
+Learn CSV processing without spending hours on tiny exercises.
+
+TASK
+
+Input:
+transactions.csv
+
+Columns may include:
+transaction_id
+customer_id
+amount
+currency
+status
+timestamp
+merchant
+category
+
+Requirements:
+
+1. Read the CSV.
+2. Validate required columns.
+3. Ignore malformed rows.
+4. Convert amount to float.
+5. Ignore failed transactions.
+6. Calculate total successful amount by customer.
+7. Count successful transactions by customer.
+8. Find top 5 customers.
+9. Find total amount by category.
+10. Detect duplicate transaction IDs.
+11. Report invalid row count.
+12. Return the final result as JSON.
+
+Then add:
+"Only include customers whose successful transaction total is above X."
+
+Do not hard-code X into your logic.
+
+CSV PATTERNS
+
+Use csv.DictReader.
+
+Remember:
+CSV values arrive as strings.
+
+Always think about:
+- numeric conversion
+- empty strings
+- whitespace
+- invalid numbers
+- missing columns
+
+TRANSFERABLE PATTERNS
+
+CSV is mostly the same problem-solving skill as JSON.
+
+The input representation changes.
+The processing patterns do not.
+
+Ask yourself:
+"Which part of my previous JSON solution is generic?"
+
+That is an important interview skill.
+
+LARGE FILE FOLLOW-UP
+
+Interviewer:
+"What if this CSV is 10 GB?"
+
+Think:
+- Do not load everything into memory.
+- Process row by row.
+- Maintain only required state.
+- Aggregate while streaming.
+
+You do not need an elaborate architecture.
+
+-----------------------------------
+PART B - TEXT / LOG TASK
+-----------------------------------
+
+TASK
+
+Input:
+application.log
+
+Example lines can contain:
+
+timestamp
+log level
+service
+request ID
+message
+HTTP status
+
+Requirements:
+
+1. Process the file line by line.
+2. Parse valid lines.
+3. Extract timestamp.
+4. Extract log level.
+5. Extract service.
+6. Extract request ID.
+7. Extract message.
+8. Count ERROR logs by service.
+9. Count HTTP status codes.
+10. Find the service with the most errors.
+11. Report malformed lines.
+12. Return structured JSON.
+
+Use normal string operations where possible.
+
+Use regex only when the structure requires it.
+
+TEXT DECISION RULE
+
+Before regex:
+Can split(), strip(), startswith(), or simple parsing solve it?
+
+If yes, prefer the simpler approach.
+
+REGEX SKILLS TO PRACTICE
+
+Only enough for interview use:
+- groups
+- named groups
+- optional parts
+- quantifiers
+- character classes
+
+Do not spend the day learning advanced regex tricks.
+
+LARGE FILE FOLLOW-UP
+
+"What if the log file is 20 GB?"
+
+Answer direction:
+Process line by line.
+Do not read the entire file into memory.
+
+DYNAMIC CHALLENGE
+
+Change the requirement:
+
+"Only analyze ERROR and WARN events from the last 2 hours."
+
+You must adapt your parser.
+
+DAY 2 TAKEAWAY
+
+The important lesson is not:
+"I know CSV."
+"I know regex."
+
+The lesson is:
+
+Different input formats often require the same core operations:
+parse -> validate -> transform -> group -> aggregate -> filter -> output.
