@@ -1,18 +1,25 @@
 AI ENGINEER INTERVIEW MASTER ROADMAP
 
-Goal:
+Goal
+
 Build first-principles understanding of AI engineering.
-Focus on concepts needed by an AI Engineer, not an ML researcher.
-Learn every concept through:
+
+Focus on concepts needed by an AI Engineer, LLM Engineer, and GenAI Engineer, rather than an ML researcher.
+
+Every major concept should be learned through:
 
 1. First principles
 2. Intuition
 3. Internal mechanism
-4. Practical implementation
-5. Real-world scenarios
-6. Failure modes
-7. Trade-offs
-8. Interview questions
+4. Mathematical understanding where useful
+5. Small Python implementation
+6. Framework implementation
+7. Real-world scenarios
+8. Failure modes
+9. Trade-offs
+10. Interview questions
+11. System-design application
+
 
 ---
 
@@ -27,6 +34,8 @@ PHASE 1: MINIMUM ML FOUNDATION
 - Foundation Models
 - Discriminative vs Generative Models
 - Training vs Inference
+- Model vs Algorithm
+- Parametric vs Non-parametric Models
 
 2. How Machine Learning Works
 
@@ -34,6 +43,7 @@ PHASE 1: MINIMUM ML FOUNDATION
 - Features
 - Labels
 - Parameters
+- Hyperparameters
 - Model
 - Prediction
 - Loss
@@ -42,7 +52,8 @@ PHASE 1: MINIMUM ML FOUNDATION
 - Inference
 
 Core mental model:
-Data → Model → Prediction → Loss → Parameter Update → Better Model
+
+Data -> Model -> Prediction -> Loss -> Parameter Update -> Better Model
 
 3. Learning Paradigms
 
@@ -50,18 +61,22 @@ Data → Model → Prediction → Loss → Parameter Update → Better Model
 - Unsupervised Learning
 - Self-Supervised Learning
 - Reinforcement Learning
+- Semi-Supervised Learning
 - When to use each
 
 4. Generalization
 
-- Training error
-- Test error
+- Training Error
+- Validation Error
+- Test Error
 - Generalization
 - Overfitting
 - Underfitting
 - Bias
 - Variance
 - Regularization
+- Data Leakage
+- Distribution Shift
 
 5. Evaluation
 
@@ -70,7 +85,9 @@ Data → Model → Prediction → Loss → Parameter Update → Better Model
 - Precision
 - Recall
 - F1
-- Choosing metrics based on business requirements
+- ROC-AUC
+- PR-AUC
+- Choosing Metrics Based on Business Requirements
 
 6. Optimization
 
@@ -80,8 +97,21 @@ Data → Model → Prediction → Loss → Parameter Update → Better Model
 - Gradient Descent
 - Learning Rate
 - Batch
+- Mini-Batch
 - Epoch
 - Optimizers
+- SGD
+- Momentum
+- Adam
+- AdamW
+- Learning Rate Schedules
+- Warmup
+- Weight Decay
+
+
+---
+
+PHASE 2: NEURAL NETWORK FOUNDATIONS
 
 7. Neural Networks
 
@@ -93,132 +123,296 @@ Data → Model → Prediction → Loss → Parameter Update → Better Model
 - Forward Pass
 - Backpropagation
 - Gradient Descent
+- Computational Graph
 
-8. Important Loss Functions
+8. Activation Functions
+
+- Sigmoid
+- Tanh
+- ReLU
+- GELU
+- SiLU / Swish
+
+9. Important Loss Functions
 
 - MSE
+- MAE
 - Cross Entropy
+- Binary Cross Entropy
 - Classification Loss
 - Language Model Loss
+- Log Likelihood
+- Negative Log Likelihood
 
-9. Reinforcement Learning
+10. Backpropagation Deep Dive
 
-- Agent
-- Environment
-- State
-- Action
-- Reward
-- Policy
-- Value
-- Exploration vs Exploitation
+- Chain Rule
+- Computational Graphs
+- Gradient Flow
+- Vanishing Gradients
+- Exploding Gradients
+- Backpropagation Through Time
+- Gradient Clipping
+- Weight Initialization
 
-10. RLHF and Alignment
+11. Neural Network Architecture Mechanics
 
-- Why RLHF exists
-- Supervised Fine-Tuning
-- Human Preference Data
-- Reward Models
-- PPO
-- RLHF
-- DPO
-- Preference Optimization
-- Alignment
+- Residual Connections
+- Skip Connections
+- Layer Normalization
+- Batch Normalization
+- Pre-Norm vs Post-Norm
+- RMSNorm
+- Feed-Forward Networks
+- MLPs
+- Gated MLPs
+- SwiGLU
+- Weight Initialization
+
 
 ---
 
-PHASE 2: NLP FOUNDATIONS
+PHASE 3: NLP FOUNDATIONS
 
-11. Representing Language
+12. Representing Language
 
 - Text
 - Vocabulary
 - Tokenization
+- Character Tokenization
+- Word Tokenization
 - Subword Tokenization
+- BPE
+- WordPiece
+- SentencePiece
 - Token IDs
-- Vector Representations
+- Vocabulary Size
+- Special Tokens
 
-12. Embeddings
+13. Embeddings
 
-- What embeddings represent
-- Semantic space
-- Vector similarity
+- What Embeddings Represent
+- Semantic Space
+- Vector Similarity
 - Cosine Similarity
 - Dot Product
 - Euclidean Distance
 - Embedding Dimensions
 - Semantic Search
+- Dense Representations
+- Static vs Contextual Embeddings
+
 
 ---
 
-PHASE 3: TRANSFORMERS
+PHASE 4: TRANSFORMERS
 
-13. Evolution of NLP
+14. Evolution of NLP
 
 - Bag of Words
+- TF-IDF
 - Word Embeddings
+- Word2Vec
 - RNN
 - LSTM
+- GRU
+- BPTT
 - Limitations of RNNs
 - Why Transformers
 
-14. Attention
+15. Attention
 
 - Query
 - Key
 - Value
 - Attention Scores
+- Scaling
 - Softmax
 - Weighted Values
 - Self-Attention
 - Cross-Attention
 - Multi-Head Attention
 
-15. Transformer Architecture
+Mathematical Understanding
+
+Understand:
+
+Q = XWq
+
+K = XWk
+
+V = XWv
+
+Attention(Q,K,V) = softmax(QK^T / sqrt(dk))V
+
+Understand:
+
+- Why Q, K and V exist
+- Why QK^T is calculated
+- Why scaling is required
+- Why softmax is used
+- How weighted values are produced
+- How multiple heads work
+- Why attention is expensive
+
+16. Transformer Architecture
 
 - Token Embeddings
 - Positional Information
 - Self-Attention
+- Multi-Head Attention
 - Feed-Forward Network
 - Residual Connections
 - Layer Normalization
+- RMSNorm
 - Encoder
 - Decoder
-- Encoder-Decoder
+- Encoder-Decoder Architecture
+- Decoder-Only Architecture
 - Causal Attention
 - Masked Attention
-- Decoder-Only Architecture
+- Cross-Attention
+
+17. Positional Information
+
+- Why Position Is Needed
+- Absolute Positional Embeddings
+- Sinusoidal Positional Encoding
+- Learned Positional Embeddings
+- Relative Position
+- Rotary Positional Embeddings
+- RoPE
+- RoPE Intuition
+- RoPE Mechanics
+- RoPE Limitations
+- Context Extension
+
+18. Attention Variants
+
+- Multi-Head Attention
+- Multi-Query Attention
+- Grouped Query Attention
+- GQA
+- MQA
+- MHA
+- Why GQA Exists
+- Memory Trade-offs
+- Compute Trade-offs
+- KV Cache Interaction
+
+19. Transformer Feed-Forward Networks
+
+- Standard FFN
+- MLP
+- Gated MLP
+- GLU
+- SwiGLU
+- Parameter Distribution
+- Compute Cost
+
 
 ---
 
-PHASE 4: LLM FUNDAMENTALS
+PHASE 5: LLM FUNDAMENTALS
 
-16. LLM Training
+20. LLM Training
 
 - Training Corpus
+- Data Collection
+- Data Cleaning
+- Data Deduplication
+- Data Filtering
 - Tokenization
 - Next Token Prediction
 - Language Model Loss
 - Backpropagation
 - Parameter Updates
 - Pretraining
+- Training Objective
 
-17. Next Token Prediction
+21. Next Token Prediction
 
 - Logits
-- Probability Distribution
 - Vocabulary
+- Probability Distribution
+- Softmax
 - Sampling
-- Why Next-Token Prediction Produces General Capabilities
+- Next Token Prediction
+- Cross Entropy
+- Why Next Token Prediction Produces General Capabilities
 
-18. Decoding
+22. LLM Architecture
+
+- Decoder-Only Transformers
+- Transformer Blocks
+- Attention Layer
+- FFN Layer
+- Residual Stream
+- Layer Normalization
+- RMSNorm
+- Token Embeddings
+- Output Projection
+- Logits
+- Weight Tying
+
+23. Model Parameters
+
+- Parameter Count
+- Trainable Parameters
+- Frozen Parameters
+- Model Size
+- Memory Requirements
+- Parameter Precision
+- FP32
+- FP16
+- BF16
+- FP8
+- Quantized Parameters
+
+24. Scaling
+
+- Model Size
+- Dataset Size
+- Compute
+- Scaling Laws
+- Compute-Optimal Training
+- Data-Optimal Training
+- Parameter Scaling
+- Context Scaling
+- Inference Scaling
+
+
+---
+
+PHASE 6: LLM DECODING AND GENERATION
+
+25. Decoding
 
 - Greedy Decoding
 - Temperature
 - Top-K
 - Top-P
-- Deterministic vs Stochastic Generation
+- Nucleus Sampling
+- Beam Search
+- Deterministic Generation
+- Stochastic Generation
+- Repetition Penalty
+- Frequency Penalty
+- Presence Penalty
 
-19. Context
+26. Sampling Mechanics
+
+- Logits
+- Logit Processing
+- Probability Distribution
+- Temperature Scaling
+- Sampling
+- Token Selection
+- Stop Tokens
+- EOS Token
+- Max Tokens
+
+27. Context
 
 - Context
 - Context Window
@@ -228,8 +422,16 @@ PHASE 4: LLM FUNDAMENTALS
 - Context Cost
 - Context Latency
 - Context Quality
+- Context Utilization
+- Long Context
+- Context Extension
 
-20. Model Training Stages
+
+---
+
+PHASE 7: LLM TRAINING AND ALIGNMENT
+
+28. Model Training Stages
 
 - Pretraining
 - Base Models
@@ -237,13 +439,51 @@ PHASE 4: LLM FUNDAMENTALS
 - Supervised Fine-Tuning
 - RLHF
 - DPO
+- Preference Optimization
 - Alignment
+
+29. Supervised Fine-Tuning
+
+- Instruction Dataset
+- Input-Output Pairs
+- Chat Templates
+- Training Examples
+- Loss Masking
+- Instruction Tuning
+- Data Quality
+- Dataset Mixture
+- Evaluation Dataset
+
+30. RLHF
+
+- Why RLHF Exists
+- Human Preference Data
+- Preference Ranking
+- Reward Models
+- Policy Model
+- PPO
+- KL Penalty
+- Reward Optimization
+- RLHF Pipeline
+- RLHF Failure Modes
+
+31. Preference Optimization
+
+- DPO
+- Preference Pairs
+- Chosen vs Rejected Responses
+- Reference Model
+- Policy Model
+- DPO Objective
+- DPO vs RLHF
+- When to Use DPO
+
 
 ---
 
-PHASE 5: PROMPT ENGINEERING AND CONTEXT ENGINEERING
+PHASE 8: PROMPT ENGINEERING AND CONTEXT ENGINEERING
 
-21. Prompt Fundamentals
+32. Prompt Fundamentals
 
 - System Prompts
 - User Prompts
@@ -254,16 +494,20 @@ PHASE 5: PROMPT ENGINEERING AND CONTEXT ENGINEERING
 - Delimiters
 - Constraints
 - Examples
+- Prompt Templates
 
-22. Structured Outputs
+33. Structured Outputs
 
 - JSON Output
 - Schemas
 - Validation
 - Structured Generation
+- JSON Mode
+- Constrained Decoding
 - Handling Invalid Outputs
+- Schema Validation
 
-23. Advanced Prompting
+34. Advanced Prompting
 
 - Decomposition
 - Few-Shot Prompting
@@ -272,8 +516,9 @@ PHASE 5: PROMPT ENGINEERING AND CONTEXT ENGINEERING
 - Reasoning Strategies
 - Dynamic Prompts
 - Prompt Templates
+- Prompt Optimization
 
-24. Context Engineering
+35. Context Engineering
 
 - System Instructions
 - User Request
@@ -284,20 +529,26 @@ PHASE 5: PROMPT ENGINEERING AND CONTEXT ENGINEERING
 - Task State
 - Context Selection
 - Context Compression
+- Context Prioritization
+- Context Ordering
+- Context Budgeting
 
-25. Prompt Security
+36. Prompt Security
 
 - Prompt Injection
 - Instruction Conflicts
 - Jailbreaks
 - Context Poisoning
 - Indirect Prompt Injection
+- System Prompt Leakage
+- Prompt Extraction
+
 
 ---
 
-PHASE 6: RAG FUNDAMENTALS
+PHASE 9: RAG FUNDAMENTALS
 
-26. Why RAG Exists
+37. Why RAG Exists
 
 - LLM Knowledge Limitations
 - Private Knowledge
@@ -305,8 +556,9 @@ PHASE 6: RAG FUNDAMENTALS
 - External Knowledge
 - Citations
 - RAG vs Model Parameters
+- Knowledge vs Behavior Problems
 
-27. RAG Architecture
+38. RAG Architecture
 
 - Document Ingestion
 - Parsing
@@ -320,7 +572,11 @@ PHASE 6: RAG FUNDAMENTALS
 - Context Construction
 - Generation
 
-28. Document Ingestion
+Core mental model:
+
+Question -> Retrieve Knowledge -> Add Context -> Generate Answer
+
+39. Document Ingestion
 
 - PDF Parsing
 - HTML
@@ -331,8 +587,10 @@ PHASE 6: RAG FUNDAMENTALS
 - Images
 - Metadata
 - Versioning
+- Deduplication
+- Document Quality
 
-29. Chunking
+40. Chunking
 
 - Fixed-Size Chunking
 - Token Chunking
@@ -349,7 +607,7 @@ PHASE 6: RAG FUNDAMENTALS
 - Chunk Overlap
 - Chunk Metadata
 
-30. Retrieval
+41. Retrieval
 
 - Sparse Retrieval
 - BM25
@@ -364,7 +622,7 @@ PHASE 6: RAG FUNDAMENTALS
 - Parent Document Retrieval
 - Multi-Vector Retrieval
 
-31. Reranking
+42. Reranking
 
 - Why Reranking
 - Bi-Encoder
@@ -372,12 +630,14 @@ PHASE 6: RAG FUNDAMENTALS
 - Retrieval Top-K
 - Reranking Top-K
 - Latency vs Quality
+- Reranker Failure Modes
+
 
 ---
 
-PHASE 7: ADVANCED RAG
+PHASE 10: ADVANCED RAG
 
-32. RAG Failure Modes
+43. RAG Failure Modes
 
 - Parsing Failure
 - Chunking Failure
@@ -394,7 +654,7 @@ PHASE 7: ADVANCED RAG
 - Image Retrieval Problems
 - Prompt Injection Through Documents
 
-33. Advanced RAG Patterns
+44. Advanced RAG Patterns
 
 - Query Expansion
 - Query Decomposition
@@ -408,7 +668,7 @@ PHASE 7: ADVANCED RAG
 - Agentic RAG
 - Multi-Hop RAG
 
-34. RAG vs Other Approaches
+45. RAG vs Other Approaches
 
 - Prompting vs RAG
 - RAG vs Fine-Tuning
@@ -417,11 +677,12 @@ PHASE 7: ADVANCED RAG
 - Hybrid Search
 - Agentic RAG vs Traditional RAG
 
+
 ---
 
-PHASE 8: AI EVALUATION
+PHASE 11: AI EVALUATION
 
-35. Retrieval Evaluation
+46. Retrieval Evaluation
 
 - Recall@K
 - Precision@K
@@ -429,16 +690,20 @@ PHASE 8: AI EVALUATION
 - nDCG
 - Retrieval Recall
 - Retrieval Precision
+- Hit Rate
 
-36. Generation Evaluation
+47. Generation Evaluation
 
 - Correctness
 - Relevance
 - Faithfulness
 - Groundedness
 - Completeness
+- Coherence
+- Helpfulness
+- Citation Correctness
 
-37. End-to-End Evaluation
+48. End-to-End Evaluation
 
 - Golden Dataset
 - Human Evaluation
@@ -448,20 +713,23 @@ PHASE 8: AI EVALUATION
 - Offline Evaluation
 - Online Evaluation
 - Production Feedback
+- A/B Testing
 
-38. Debugging AI Systems
+49. Debugging AI Systems
 
 - Retrieval Failure vs Generation Failure
 - Evaluation Traces
 - Error Classification
 - Regression Detection
 - Experimentation
+- Root Cause Analysis
+
 
 ---
 
-PHASE 9: FINE-TUNING
+PHASE 12: FINE-TUNING
 
-39. Fine-Tuning Fundamentals
+50. Fine-Tuning Fundamentals
 
 - When Fine-Tuning Is Needed
 - Supervised Fine-Tuning
@@ -470,15 +738,76 @@ PHASE 9: FINE-TUNING
 - Training Data Quality
 - Evaluation Dataset
 - Catastrophic Forgetting
+- Distribution Shift
+- Overfitting
 
-40. Parameter-Efficient Fine-Tuning
+51. Parameter-Efficient Fine-Tuning
 
 - LoRA
 - QLoRA
 - Adapters
+- Prefix Tuning
+- Prompt Tuning
+- PEFT
 - When to Use PEFT
 
-41. Prompting vs RAG vs Fine-Tuning
+52. LoRA Mechanics
+
+- Low-Rank Adaptation
+- Rank
+- A Matrix
+- B Matrix
+- A x B Matrices
+- Frozen Base Model
+- Trainable LoRA Parameters
+- Scaling Factor
+- Rank vs Quality
+- Rank vs Memory
+- Rank vs Compute
+
+53. QLoRA
+
+- Quantized Base Model
+- NF4
+- 4-bit Quantization
+- Double Quantization
+- Dequantization During Computation
+- QLoRA Memory Savings
+- QLoRA Training Pipeline
+
+54. Quantization
+
+- Why Quantization
+- FP32
+- FP16
+- BF16
+- INT8
+- INT4
+- NF4
+- Quantization Scale
+- Zero Point
+- Calibration
+- Symmetric Quantization
+- Asymmetric Quantization
+- Weight Quantization
+- Activation Quantization
+- Weight-Only Quantization
+- Quantization-Aware Training
+- Post-Training Quantization
+
+55. GPTQ and AWQ
+
+- GPTQ
+- AWQ
+- Weight Quantization
+- Calibration Dataset
+- Activation Awareness
+- Accuracy vs Compression
+- Inference Memory Savings
+- GPTQ vs AWQ
+- When to Use Each
+
+56. Prompting vs RAG vs Fine-Tuning
 
 - Knowledge Problems
 - Behavior Problems
@@ -487,12 +816,137 @@ PHASE 9: FINE-TUNING
 - Cost
 - Control
 - Maintenance
+- Latency
+- Data Requirements
+
 
 ---
 
-PHASE 10: TOOL CALLING
+PHASE 13: LLM INFERENCE ENGINEERING
 
-42. Function Calling
+57. LLM Inference Fundamentals
+
+- Prefill
+- Decode
+- Autoregressive Generation
+- TTFT
+- Time to First Token
+- Inter-Token Latency
+- End-to-End Latency
+- Throughput
+- Tokens Per Second
+
+58. KV Cache
+
+- What KV Cache Is
+- Why KV Cache Exists
+- K Cache
+- V Cache
+- Memory Growth
+- Sequence Length
+- Number of Layers
+- Number of KV Heads
+- Head Dimension
+- KV Cache Memory Calculation
+- GPU Memory Constraints
+- KV Cache Eviction
+- Prefix Caching
+
+59. Attention Memory Mechanics
+
+- Attention Memory Complexity
+- Compute vs Memory Bound Workloads
+- Memory Bandwidth
+- GPU Memory
+- HBM
+- SRAM
+- Cache Hierarchy
+- Arithmetic Intensity
+
+60. FlashAttention
+
+- Why Standard Attention Is Expensive
+- Memory Bottleneck
+- Tiling
+- IO-Aware Attention
+- SRAM vs HBM
+- FlashAttention
+- FlashAttention-2
+- FlashAttention-3
+- Compute vs Memory Trade-offs
+
+61. Grouped Query Attention
+
+- MHA
+- MQA
+- GQA
+- Query Heads
+- KV Heads
+- KV Cache Reduction
+- Memory Savings
+- Quality Trade-offs
+- Inference Benefits
+
+62. Continuous Batching
+
+- Static Batching
+- Dynamic Batching
+- Continuous Batching
+- Request Scheduling
+- Sequence Scheduling
+- Throughput
+- Latency
+- GPU Utilization
+
+63. PagedAttention
+
+- KV Cache Fragmentation
+- Paging
+- Memory Blocks
+- Block Tables
+- Virtual Memory Analogy
+- PagedAttention
+- vLLM
+- Memory Efficiency
+
+64. Speculative Decoding
+
+- Draft Model
+- Target Model
+- Draft Tokens
+- Verification
+- Acceptance
+- Rejection
+- Speedup
+- Quality Preservation
+- When Speculative Decoding Helps
+
+65. TTFT vs TPOT
+
+- Time To First Token
+- Time Per Output Token
+- Prefill Latency
+- Decode Latency
+- User Experience
+- Throughput vs Latency
+
+66. LLM Serving Frameworks
+
+- vLLM
+- llama.cpp
+- TensorRT-LLM
+- Ollama
+- Hugging Face TGI
+- Model Serving APIs
+- When to use each
+- CPU vs GPU inference
+
+
+---
+
+PHASE 14: TOOL CALLING
+
+67. Function Calling
 
 - Tool Definitions
 - Tool Schemas
@@ -501,8 +955,9 @@ PHASE 10: TOOL CALLING
 - Validation
 - Tool Execution
 - Tool Results
+- Structured Tool Calls
 
-43. Tool Engineering
+68. Tool Engineering
 
 - Retries
 - Timeouts
@@ -511,12 +966,16 @@ PHASE 10: TOOL CALLING
 - Error Handling
 - Tool Result Validation
 - Safe Tool Design
+- Rate Limits
+- Tool Versioning
+- Tool Observability
+
 
 ---
 
-PHASE 11: AI AGENTS
+PHASE 15: AI AGENTS
 
-44. Agent Fundamentals
+69. Agent Fundamentals
 
 - What Is an Agent
 - Goal
@@ -528,7 +987,11 @@ PHASE 11: AI AGENTS
 - Agent Loop
 - Termination
 
-45. Agent Patterns
+Core mental model:
+
+Goal -> Decide -> Act -> Observe -> Repeat
+
+70. Agent Patterns
 
 - ReAct
 - Router
@@ -541,7 +1004,7 @@ PHASE 11: AI AGENTS
 - Subagents
 - Multi-Agent Systems
 
-46. Agent Failure Modes
+71. Agent Failure Modes
 
 - Runaway Loops
 - Wrong Tool Selection
@@ -553,20 +1016,24 @@ PHASE 11: AI AGENTS
 - Cost Explosion
 - Latency Explosion
 - Unsafe Actions
+- State Corruption
 
-47. When NOT to Use Agents
+72. When NOT to Use Agents
 
 - Deterministic Workflows
 - Fixed Pipelines
 - Cost Considerations
 - Latency Considerations
 - Reliability Considerations
+- Predictability
+- Debuggability
+
 
 ---
 
-PHASE 12: LANGGRAPH
+PHASE 16: LANGGRAPH
 
-48. LangGraph Fundamentals
+73. LangGraph Fundamentals
 
 - State
 - Nodes
@@ -575,8 +1042,9 @@ PHASE 12: LANGGRAPH
 - Reducers
 - Graph Execution
 - Loops
+- State Transitions
 
-49. LangGraph Production Features
+74. LangGraph Production Features
 
 - Checkpointing
 - Persistence
@@ -587,8 +1055,9 @@ PHASE 12: LANGGRAPH
 - Subgraphs
 - Streaming
 - State Management
+- Fault Recovery
 
-50. LangGraph Projects
+75. LangGraph Projects
 
 - RAG Workflow
 - Customer Support Agent
@@ -597,28 +1066,34 @@ PHASE 12: LANGGRAPH
 - Human Approval Workflow
 - Multi-Agent Workflow
 
+
 ---
 
-PHASE 13: MEMORY
+PHASE 17: MEMORY
 
-51. AI Memory
+76. AI Memory
 
 - Conversation History
 - Short-Term State
 - Long-Term Memory
 - Semantic Memory
+- Episodic Memory
 - Procedural Memory
 - Checkpoints
 - Persistent Memory
 - Summarization
 - Context Compression
 - Memory Retrieval
+- Memory Extraction
+- Memory Updating
+- Memory Forgetting
+
 
 ---
 
-PHASE 14: MCP
+PHASE 18: MCP
 
-52. Model Context Protocol
+77. Model Context Protocol
 
 - Why MCP
 - MCP Client
@@ -628,13 +1103,18 @@ PHASE 14: MCP
 - Prompts
 - Authorization
 - Security
+- MCP Architecture
+- MCP Lifecycle
 - MCP vs Function Calling
+- MCP vs APIs
+- MCP Tool Discovery
+
 
 ---
 
-PHASE 15: PRODUCTION AI ENGINEERING
+PHASE 19: PRODUCTION AI ENGINEERING
 
-53. Reliability
+78. Reliability
 
 - Retries
 - Timeouts
@@ -643,8 +1123,11 @@ PHASE 15: PRODUCTION AI ENGINEERING
 - Rate Limiting
 - Idempotency
 - Graceful Degradation
+- Bulkheads
+- Dead Letter Queues
+- Failure Recovery
 
-54. Latency
+79. Latency
 
 - Network Latency
 - LLM Latency
@@ -656,8 +1139,10 @@ PHASE 15: PRODUCTION AI ENGINEERING
 - Caching
 - Model Selection
 - Batching
+- TTFT
+- TPOT
 
-55. Cost
+80. Cost
 
 - Input Tokens
 - Output Tokens
@@ -670,12 +1155,28 @@ PHASE 15: PRODUCTION AI ENGINEERING
 - Context Reduction
 - Smaller Models
 - Batching
+- Quantization
+
+81. Scaling
+
+- Horizontal Scaling
+- Vertical Scaling
+- Load Balancing
+- Autoscaling
+- Queue-Based Architecture
+- Async Processing
+- GPU Scaling
+- Multi-GPU Inference
+- Distributed Inference
+- Model Replication
+- Capacity Planning
+
 
 ---
 
-PHASE 16: AI SECURITY
+PHASE 20: AI SECURITY
 
-56. LLM Security
+82. LLM Security
 
 - Prompt Injection
 - Indirect Prompt Injection
@@ -684,8 +1185,11 @@ PHASE 16: AI SECURITY
 - Sensitive Information Disclosure
 - RAG Poisoning
 - Malicious Documents
+- Model Extraction
+- Data Leakage
+- System Prompt Leakage
 
-57. Agent Security
+83. Agent Security
 
 - Least Privilege
 - Tool Authorization
@@ -695,12 +1199,15 @@ PHASE 16: AI SECURITY
 - Human Approval
 - Irreversible Actions
 - Secrets Protection
+- Tool Isolation
+- Permission Boundaries
+
 
 ---
 
-PHASE 17: AI OBSERVABILITY
+PHASE 21: AI OBSERVABILITY
 
-58. AI Tracing
+84. AI Tracing
 
 - Requests
 - Prompts
@@ -709,10 +1216,149 @@ PHASE 17: AI OBSERVABILITY
 - LLM Calls
 - Tool Calls
 - Final Responses
+- Token Usage
+- Latency
+- Errors
+- Agent State
 
-59. AI Metrics
+85. AI Metrics
 
 - Latency
+- Token Usage
+- Cost
+- Error Rate
+- Retrieval Quality
+- Generation Quality
+- Evaluation Scores
+- User Feedback
+- TTFT
+- TPOT
+- Throughput
+- GPU Utilization
+
+86. Production Debugging
+
+- Trace-Based Debugging
+- Prompt Debugging
+- Retrieval Debugging
+- Tool Debugging
+- Model Debugging
+- Agent Debugging
+- Regression Detection
+- Root Cause Analysis
+
+
+---
+
+PHASE 22: AI SYSTEM DESIGN
+
+87. System Design Fundamentals
+
+- Requirements
+- Architecture
+- Data Flow
+- Model Selection
+- Prompting
+- Retrieval
+- Tools
+- Memory
+- Evaluation
+- Security
+- Cost
+- Latency
+- Failure Handling
+- Scaling
+- Observability
+
+88. Model Selection
+
+- Model Quality
+- Model Size
+- Context Window
+- Latency
+- Cost
+- Reasoning Capability
+- Tool Calling
+- Structured Output
+- Fine-Tuning Availability
+- Hosting Options
+
+89. Systems to Design
+
+- Enterprise RAG
+- Customer Support Copilot
+- AI Research Agent
+- SQL Agent
+- Coding Assistant
+- Multi-Agent System
+- AI Email Assistant
+- Human-in-the-Loop Agent
+- Large-Scale Document Search
+- Production LLM API
+- LLM Inference Service
+- High-Throughput LLM Gateway
+- AI Search Engine
+- Enterprise Knowledge Assistant
+
+
+---
+
+PHASE 23: INTERVIEW PREPARATION
+
+For every major topic:
+
+1. Explain the concept from first principles.
+2. Explain the intuition.
+3. Explain the internal mechanism.
+4. Understand the important mathematics.
+5. Implement a small version in Python.
+6. Implement it using relevant frameworks.
+7. Discuss real production scenarios.
+8. Discuss failure modes.
+9. Discuss engineering trade-offs.
+10. Answer interview questions.
+11. Handle interviewer follow-ups.
+12. Solve a system-design scenario.
+
+
+---
+
+INTERVIEW DEPTH LEVELS
+
+Level 1: Definition
+
+What is it?
+
+Level 2: Mechanism
+
+How does it work internally?
+
+Level 3: Mathematics
+
+What is the underlying mathematical formulation?
+
+Level 4: Implementation
+
+How would you implement it?
+
+Level 5: Engineering Trade-offs
+
+Why choose this approach over another?
+
+Level 6: Failure Modes
+
+What can go wrong?
+
+Level 7: Production Architecture
+
+How would you deploy and operate it at scale?
+
+Level 8: Interviewer Challenge
+
+What happens if:
+
+- Latency doubles?
+- Cost becatency
 - Token Usage
 - Cost
 - Error Rate
