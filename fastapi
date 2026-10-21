@@ -1,0 +1,150 @@
+DAY 3 - FASTAPI INTEGRATED PRACTICAL
+
+OBJECTIVE
+
+Connect the processing skills from Days 1 and 2 to a simple REST API.
+
+Do not build a production platform.
+
+Build a clean interview-sized application.
+
+PROJECT
+
+Transaction Analysis API
+
+Endpoints:
+
+GET /
+Health check.
+
+POST /transactions/analyze
+Accept JSON in the request body.
+
+POST /transactions/analyze-file
+Accept a JSON file.
+
+POST /transactions/analyze-csv
+Accept a CSV file.
+
+CORE PROCESSING
+
+Reuse normal Python functions.
+
+Example structure:
+
+API route
+-> validation
+-> processing function
+-> result
+-> response
+
+Do not put the complete business logic inside the route.
+
+LEARN
+
+1. FastAPI app
+2. Routes
+3. GET
+4. POST
+5. Path parameters
+6. Query parameters
+7. Request body
+8. Pydantic models
+9. Nested models
+10. Response models
+11. Validation
+12. HTTPException
+13. File upload
+14. Status codes
+15. Swagger/OpenAPI basics
+
+PRACTICAL TASK
+
+Build:
+
+POST /transactions/analyze
+
+Input:
+A list of transaction objects.
+
+Requirements:
+- Validate required fields.
+- Ignore or reject invalid records based on a clear rule.
+- Ignore failed transactions.
+- Aggregate by customer.
+- Return top 5 customers.
+- Return total successful amount.
+- Return invalid record count.
+
+Then build:
+
+POST /transactions/analyze-file
+
+Accept a JSON file and perform the same processing.
+
+Then:
+
+POST /transactions/analyze-csv
+
+Accept the CSV version.
+
+IMPORTANT
+
+The processing function should work independently of FastAPI.
+
+For example:
+
+analyze_transactions(records)
+
+FastAPI should mainly:
+- receive input
+- validate
+- call function
+- return result
+
+INTERVIEW FOLLOW-UPS
+
+Be ready for:
+
+Why POST?
+
+Why Pydantic?
+
+What happens when the request is invalid?
+
+What status code would you return?
+
+What if the uploaded file is huge?
+
+What if processing takes 30 seconds?
+
+How would you prevent malformed input?
+
+How would you log failures?
+
+How would you test the endpoint?
+
+Do not go deep into advanced architecture.
+
+DYNAMIC CHALLENGE
+
+After you finish:
+
+"Now add a query parameter called min_amount.
+Only transactions above that amount should be included."
+
+Then:
+
+"Now add currency filtering."
+
+Then:
+
+"Now change the API to return the top N customers."
+
+The purpose is to practice modifying working code without breaking it.
+
+DAY 3 SUCCESS CRITERIA
+
+You should be able to create a small FastAPI service from memory.
+
+You should not need a tutorial open for every line.
