@@ -1,0 +1,1252 @@
+DATASET PRACTICAL INTERVIEW ROADMAP
+
+GOAL
+
+Go from zero knowledge of dataset processing to a decent practical level for an AI Engineer live-coding interview.
+
+The target is NOT to become a data scientist.
+
+The target is to confidently receive:
+
+- CSV / JSON / text dataset
+- business requirement
+- 30-90 minute time limit
+
+and be able to:
+
+1. Inspect the data.
+2. Understand the columns and relationships.
+3. Clean bad data.
+4. Filter records.
+5. Transform values.
+6. Group records.
+7. Aggregate values.
+8. Sort and rank.
+9. Join datasets.
+10. Handle missing values and duplicates.
+11. Produce the required output.
+12. Explain the approach and complexity.
+13. Use pandas when useful.
+14. Fall back to pure Python when required.
+
+==================================================
+LEVEL 0 - DATASET FUNDAMENTALS
+
+First understand what a dataset actually is.
+
+A dataset is usually:
+
+Rows = records
+Columns = attributes/features
+
+Example:
+
+customer_id | amount | status | category
+101         | 500    | paid   | laptop
+102         | 200    | failed | phone
+101         | 300    | paid   | phone
+
+Understand:
+
+- row
+- column
+- record
+- feature
+- target
+- categorical data
+- numerical data
+- string data
+- boolean data
+- timestamp/date
+- missing value
+- duplicate
+- invalid value
+
+Understand the difference between:
+
+"missing"
+
+and
+
+"invalid"
+
+Example:
+
+amount = ""
+
+Missing.
+
+amount = "abc"
+
+Invalid.
+
+==================================================
+LEVEL 1 - PYTHON DATA PROCESSING
+
+Before pandas, become comfortable doing dataset operations using normal Python.
+
+This is extremely important.
+
+You should be able to solve many dataset problems without pandas.
+
+---
+
+1. Lists
+
+---
+
+Know:
+
+- iteration
+- filtering
+- slicing
+- sorting
+- list comprehensions
+
+Examples:
+
+[x for x in nums if x > 10]
+
+sorted(data, key=lambda x: x["amount"])
+
+---
+
+2. Dictionaries
+
+---
+
+This is one of the most important dataset structures.
+
+Know:
+
+data[key]
+
+data.get(key)
+
+data[key] = value
+
+dictionary membership
+
+nested dictionaries
+
+Example:
+
+revenue = {}
+
+revenue["101"] = 500
+
+---
+
+3. Sets
+
+---
+
+Use sets for:
+
+- uniqueness
+- duplicate detection
+- membership checks
+
+Example:
+
+seen = set()
+
+if transaction_id in seen:
+continue
+
+seen.add(transaction_id)
+
+---
+
+4. Counter
+
+---
+
+Know:
+
+from collections import Counter
+
+count = Counter()
+
+count["error"] += 1
+
+Useful for:
+
+- frequencies
+- categories
+- statuses
+- event counts
+
+---
+
+5. defaultdict
+
+---
+
+Know:
+
+from collections import defaultdict
+
+groups = defaultdict(list)
+
+groups[customer_id].append(transaction)
+
+Also:
+
+totals = defaultdict(float)
+
+totals[customer_id] += amount
+
+---
+
+6. Sorting
+
+---
+
+Know:
+
+sorted()
+
+list.sort()
+
+key=
+
+reverse=True
+
+Example:
+
+sorted(
+customers,
+key=lambda x: x["revenue"],
+reverse=True
+)
+
+---
+
+7. Aggregation
+
+---
+
+Understand:
+
+count
+sum
+average
+min
+max
+
+Typical pattern:
+
+for row in data:
+customer = row["customer_id"]
+totals[customer] += row["amount"]
+
+---
+
+8. Grouping
+
+---
+
+Requirement:
+
+"Calculate revenue per customer."
+
+Think:
+
+GROUP BY customer_id
+
+Pure Python:
+
+totals = {}
+
+for row in data:
+customer = row["customer_id"]
+
+totals[customer] = (
+    totals.get(customer, 0)
+    + row["amount"]
+)
+
+==================================================
+LEVEL 2 - CSV FUNDAMENTALS
+
+Learn the built-in csv module first.
+
+---
+
+1. Read CSV
+
+---
+
+import csv
+
+with open("data.csv") as f:
+reader = csv.DictReader(f)
+
+for row in reader:
+    print(row)
+
+Understand that values initially come as strings.
+
+---
+
+2. Type conversion
+
+---
+
+amount = float(row["amount"])
+
+customer_id = int(row["customer_id"])
+
+---
+
+3. Missing values
+
+---
+
+Understand:
+
+if not row["amount"]:
+...
+
+---
+
+4. Invalid values
+
+---
+
+Use:
+
+try:
+amount = float(row["amount"])
+except ValueError:
+continue
+
+---
+
+5. Filtering
+
+---
+
+if row["status"] != "completed":
+continue
+
+---
+
+6. Grouping
+
+---
+
+Group by:
+
+- customer
+- category
+- product
+- date
+- status
+
+---
+
+7. Aggregation
+
+---
+
+Calculate:
+
+- count
+- sum
+- average
+- min
+- max
+
+---
+
+8. Duplicate detection
+
+---
+
+Use a set.
+
+---
+
+9. Sorting
+
+---
+
+Sort aggregated results.
+
+---
+
+10. Output
+
+---
+
+Be able to produce:
+
+- list of dictionaries
+- JSON-compatible dictionary
+- CSV output
+
+==================================================
+LEVEL 3 - DATA CLEANING
+
+This is highly relevant for practical AI/data tasks.
+
+Learn to handle:
+
+1. Missing values
+2. Invalid values
+3. Duplicate rows
+4. Wrong data types
+5. Empty strings
+6. Unexpected categories
+7. Invalid dates
+8. Negative values where they are not allowed
+9. Unknown IDs
+10. Malformed records
+
+Example:
+
+amount = "1000"
+
+Convert to:
+
+1000.0
+
+Example:
+
+amount = "abc"
+
+Decide:
+
+skip
+OR
+replace
+OR
+raise error
+
+The important part is being able to explain the decision.
+
+Learn this mindset:
+
+RAW DATA
+↓
+VALIDATE
+↓
+CLEAN
+↓
+TRANSFORM
+↓
+ANALYZE
+
+==================================================
+LEVEL 4 - PANDAS FUNDAMENTALS
+
+Now learn pandas.
+
+Do NOT start with advanced pandas.
+
+Learn the basic mental model:
+
+DataFrame = table.
+
+---
+
+1. Read CSV
+
+---
+
+import pandas as pd
+
+df = pd.read_csv("data.csv")
+
+---
+
+2. Inspect
+
+---
+
+df.head()
+
+df.tail()
+
+df.shape
+
+df.columns
+
+df.info()
+
+df.describe()
+
+Learn what each tells you.
+
+---
+
+3. Select columns
+
+---
+
+df["amount"]
+
+df[["customer_id", "amount"]]
+
+---
+
+4. Filter rows
+
+---
+
+df[df["status"] == "completed"]
+
+Multiple conditions:
+
+df[
+(df["status"] == "completed") &
+(df["amount"] > 100)
+]
+
+Remember:
+
+Use & and | with pandas conditions.
+
+---
+
+5. Sorting
+
+---
+
+df.sort_values(
+"amount",
+ascending=False
+)
+
+---
+
+6. Missing values
+
+---
+
+df.isna()
+
+df.isna().sum()
+
+df.dropna()
+
+df.fillna(0)
+
+---
+
+7. Remove duplicates
+
+---
+
+df.drop_duplicates()
+
+df.drop_duplicates(
+subset=["transaction_id"]
+)
+
+---
+
+8. Type conversion
+
+---
+
+pd.to_numeric(
+df["amount"],
+errors="coerce"
+)
+
+Dates:
+
+pd.to_datetime(
+df["timestamp"],
+errors="coerce"
+)
+
+==================================================
+LEVEL 5 - PANDAS GROUPING
+
+THIS IS ONE OF THE MOST IMPORTANT LEVELS.
+
+Understand:
+
+GROUP BY
+
+Example:
+
+df.groupby("customer_id")["amount"].sum()
+
+Meaning:
+
+For every customer,
+calculate the total amount.
+
+---
+
+Count
+
+df.groupby("customer_id").size()
+
+---
+
+Average
+
+df.groupby("customer_id")["amount"].mean()
+
+---
+
+Multiple aggregations
+
+df.groupby("customer_id").agg(
+total=("amount", "sum"),
+count=("amount", "count"),
+average=("amount", "mean")
+)
+
+---
+
+Group by multiple columns
+
+df.groupby(
+["customer_id", "category"]
+)["amount"].sum()
+
+---
+
+Sort grouped result
+
+result = (
+df.groupby("customer_id")["amount"]
+.sum()
+.sort_values(ascending=False)
+)
+
+---
+
+Top N
+
+result.head(5)
+
+==================================================
+LEVEL 6 - TRANSFORMATION
+
+Learn how to create derived columns.
+
+Example:
+
+df["total"] = (
+df["quantity"] *
+df["price"]
+)
+
+Example:
+
+df["is_large"] = df["amount"] > 1000
+
+Understand:
+
+raw column
+↓
+transformation
+↓
+derived column
+
+==================================================
+LEVEL 7 - PANDAS MERGE / JOIN
+
+VERY IMPORTANT.
+
+Suppose:
+
+customers.csv
+
+customer_id | name
+
+transactions.csv
+
+customer_id | amount
+
+You need to combine them.
+
+Learn:
+
+df1.merge(
+df2,
+on="customer_id"
+)
+
+Understand:
+
+- inner join
+- left join
+- right join
+- outer join
+
+You do not need advanced SQL.
+
+Just understand the idea:
+
+MATCH RECORDS USING A COMMON KEY.
+
+==================================================
+LEVEL 8 - TEXT AND DATE DATA
+
+Learn basic string operations.
+
+strip()
+
+lower()
+
+upper()
+
+split()
+
+replace()
+
+startswith()
+
+contains()
+
+Pandas:
+
+df["name"].str.lower()
+
+df["name"].str.strip()
+
+df["message"].str.contains("error")
+
+---
+
+Dates
+
+Learn:
+
+pd.to_datetime()
+
+Then:
+
+df["date"].dt.year
+
+df["date"].dt.month
+
+df["date"].dt.day
+
+df["date"].dt.hour
+
+Filtering by date.
+
+Grouping by date/month.
+
+==================================================
+LEVEL 9 - NUMPY FUNDAMENTALS
+
+Only learn the useful basics.
+
+Do NOT spend much time here.
+
+Understand:
+
+import numpy as np
+
+np.array()
+
+shape
+
+dtype
+
+ndim
+
+---
+
+Basic operations
+
+np.sum()
+
+np.mean()
+
+np.min()
+
+np.max()
+
+---
+
+Filtering
+
+arr[arr > 10]
+
+---
+
+Vectorized operations
+
+arr * 2
+
+arr + 10
+
+Understand why NumPy is useful:
+
+Instead of manually looping over numerical data,
+operations can be performed efficiently over arrays.
+
+That is enough for the current interview preparation.
+
+==================================================
+LEVEL 10 - REAL DATASET PATTERNS
+
+Now stop learning individual functions.
+
+Start solving requirements.
+
+Practice requirements such as:
+
+---
+
+"Find the top 5 customers by revenue."
+
+Think:
+
+filter
+→ group
+→ sum
+→ sort
+→ top 5
+
+---
+
+"Find average order value by category."
+
+Think:
+
+group
+→ mean
+
+---
+
+"Find customers with more than 5 orders."
+
+Think:
+
+group
+→ count
+→ filter
+
+---
+
+"Find the highest revenue category."
+
+Think:
+
+group
+→ sum
+→ sort/max
+
+---
+
+"Remove duplicate transactions."
+
+Think:
+
+transaction_id
+→ set / drop_duplicates
+
+---
+
+"Combine customer and transaction information."
+
+Think:
+
+join / merge
+
+---
+
+"Ignore invalid transactions."
+
+Think:
+
+validate
+→ filter
+
+---
+
+"Find transactions from the previous month."
+
+Think:
+
+parse dates
+→ filter date range
+
+---
+
+"Find monthly revenue."
+
+Think:
+
+parse date
+→ extract month
+→ group
+→ sum
+
+---
+
+"Find the percentage of successful transactions."
+
+Think:
+
+filter/count
+→ calculate ratio
+
+==================================================
+LEVEL 11 - DATASET INTERVIEW TASKS
+
+Now solve complete tasks.
+
+TASK TYPE 1
+
+E-commerce dataset.
+
+Columns:
+
+order_id
+customer_id
+product
+category
+quantity
+price
+status
+timestamp
+
+Requirements:
+
+- Ignore cancelled orders.
+- Calculate revenue.
+- Find top 5 customers.
+- Find top 3 categories.
+- Calculate average order value.
+- Detect duplicate orders.
+- Handle missing values.
+
+---
+
+TASK TYPE 2
+
+Bank transaction dataset.
+
+Columns:
+
+transaction_id
+customer_id
+amount
+currency
+status
+timestamp
+merchant
+
+Requirements:
+
+- Remove duplicates.
+- Ignore failed transactions.
+- Find top customers.
+- Calculate total transaction value.
+- Count transactions by currency.
+- Find suspiciously large transactions.
+- Handle invalid amounts.
+
+---
+
+TASK TYPE 3
+
+Application logs.
+
+Columns:
+
+timestamp
+service
+level
+request_id
+status_code
+message
+
+Requirements:
+
+- Count errors.
+- Find errors by service.
+- Find most common status code.
+- Find service with highest error rate.
+- Filter a time range.
+
+---
+
+TASK TYPE 4
+
+Customer dataset + transaction dataset.
+
+Requirements:
+
+- Join datasets.
+- Find customers with no transactions.
+- Find top customers.
+- Calculate revenue per customer.
+- Find inactive customers.
+
+==================================================
+LEVEL 12 - PURE PYTHON VS PANDAS
+
+This is VERY important for interviews.
+
+Take the SAME problem.
+
+Solve it twice.
+
+Example:
+
+"Total revenue per customer."
+
+Pure Python:
+
+dictionary + loop
+
+Then pandas:
+
+groupby().sum()
+
+Understand that these are not two different problems.
+
+They are two implementations of the same operation.
+
+This makes pandas much easier to learn.
+
+==================================================
+LEVEL 13 - LARGE DATASET THINKING
+
+Learn the basic scalability questions.
+
+Interviewer:
+
+"What if the CSV is 10 GB?"
+
+Think:
+
+Do not load everything into memory.
+
+Use streaming.
+
+Pure Python:
+
+for row in reader:
+process(row)
+
+Pandas:
+
+Understand that normal read_csv loads substantial data into memory.
+
+Know that chunking is possible:
+
+pd.read_csv(
+"large.csv",
+chunksize=100000
+)
+
+Process each chunk.
+
+You do NOT need distributed computing for this level.
+
+==================================================
+LEVEL 14 - DATASET + AI ENGINEERING
+
+Because this is an AI Engineer interview, connect dataset processing to AI.
+
+Understand where data processing fits:
+
+Raw data
+↓
+cleaning
+↓
+normalization
+↓
+transformation
+↓
+feature extraction
+↓
+model / LLM
+↓
+evaluation
+
+For an LLM/RAG system:
+
+Documents
+↓
+parse
+↓
+clean
+↓
+chunk
+↓
+metadata
+↓
+embeddings
+↓
+vector database
+
+The same practical data-processing skills apply.
+
+==================================================
+FINAL INTERVIEW LEVEL
+
+You are at a decent level when you can receive:
+
+"Here is a CSV containing 50,000 customer transactions.
+
+Clean the data.
+
+Ignore invalid records.
+
+Find the top 10 customers by completed transaction value.
+
+Calculate their transaction count and average value.
+
+Join this with the customer information.
+
+Return the result."
+
+and your brain automatically goes:
+
+1. Inspect columns.
+2. Identify required fields.
+3. Parse types.
+4. Clean invalid records.
+5. Remove duplicates.
+6. Filter completed transactions.
+7. Group by customer.
+8. Aggregate total/count/average.
+9. Join customer information.
+10. Sort.
+11. Take top 10.
+12. Return structured result.
+
+Then decide:
+
+Pure Python or pandas?
+
+==================================================
+WHAT TO MEMORIZE
+
+Do NOT memorize hundreds of pandas functions.
+
+Memorize these operations:
+
+READ
+FILTER
+SELECT
+TRANSFORM
+GROUP
+AGGREGATE
+SORT
+DEDUPLICATE
+JOIN
+HANDLE MISSING DATA
+HANDLE INVALID DATA
+PARSE DATES
+OUTPUT
+
+==================================================
+MINIMUM PANDAS CHEAT SHEET
+
+pd.read_csv()
+
+df.head()
+
+df.shape
+
+df.columns
+
+df.info()
+
+df.describe()
+
+df["column"]
+
+df[["col1", "col2"]]
+
+df[df["column"] == value]
+
+df.sort_values()
+
+df.groupby()
+
+df.agg()
+
+df.merge()
+
+df.drop_duplicates()
+
+df.isna()
+
+df.dropna()
+
+df.fillna()
+
+pd.to_numeric()
+
+pd.to_datetime()
+
+df["column"].str...
+
+==================================================
+MINIMUM NUMPY CHEAT SHEET
+
+np.array()
+
+arr.shape
+
+arr.dtype
+
+arr.ndim
+
+np.sum()
+
+np.mean()
+
+np.min()
+
+np.max()
+
+arr[arr > value]
+
+vectorized operations
+
+==================================================
+THE REAL GOAL
+
+Do not aim to say:
+
+"I know pandas."
+
+Aim to say:
+
+"I understand the operation the requirement is asking for, and I can implement it using pure Python or pandas."
+
+That is much more valuable in a live coding interview.
+
+The progression should be:
+
+Python
+↓
+CSV
+↓
+Data cleaning
+↓
+Grouping / aggregation
+↓
+Pandas
+↓
+Merge / dates / strings
+↓
+NumPy basics
+↓
+Real dataset problems
+↓
+Timed unfamiliar task
+
+Once you reach the final stage, stop learning new functions.
+
+Spend your time solving unfamiliar datasets.
